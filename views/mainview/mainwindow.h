@@ -18,6 +18,7 @@ public:
 
 public slots:
   void setStatusBarText(const QString &text);
+  void setCurrentStackedWidget(int index);
 
 private:
   Ui::MainWindow *ui;
