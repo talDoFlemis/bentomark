@@ -17,6 +17,10 @@ set(PROJECT_SOURCES
         views/mainview/mainwindow.cpp
         views/mainview/mainwindow.h
         views/mainview/mainwindow.ui
+        views/entryview/entryview.h
+        views/entryview/entryview.cpp
+        views/entryview/entryview.ui
+
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
