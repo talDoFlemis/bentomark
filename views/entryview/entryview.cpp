@@ -4,8 +4,10 @@
 EntryView::EntryView(QWidget *parent) : QWidget(parent), ui(new Ui::EntryView) {
   ui->setupUi(this);
 
+  QFont logoFont("AmazDooMRight", 100);
+  ui->title->setFont(logoFont);
+
   parent->setWindowTitle("Welcome • Bentomark");
-  emit statusBarTextChanged("Welcome to Bentomark");
 
   connect(ui->newtonAction, SIGNAL(clicked()), this,
           SLOT(onNewtonActionClicked()));

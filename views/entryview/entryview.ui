@@ -1,9 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <author/>
- <comment/>
- <exportmacro/>
  <class>EntryView</class>
- <widget class="QWidget" name="centralwidget">
+ <widget class="QWidget" name="EntryView">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>617</width>
+    <height>284</height>
+   </rect>
+  </property>
   <layout class="QVBoxLayout" name="verticalLayout_2">
    <item>
     <spacer name="verticalSpacer_3">
@@ -36,14 +42,14 @@
        </property>
        <property name="font">
         <font>
-         <pointsize>36</pointsize>
+         <pointsize>72</pointsize>
         </font>
        </property>
        <property name="text">
-        <string># Bentomark</string>
+        <string>BentomarK</string>
        </property>
        <property name="textFormat">
-        <enum>Qt::MarkdownText</enum>
+        <enum>Qt::AutoText</enum>
        </property>
        <property name="scaledContents">
         <bool>false</bool>
@@ -243,6 +249,6 @@
    </item>
   </layout>
  </widget>
- <pixmapfunction/>
+ <resources/>
  <connections/>
 </ui>

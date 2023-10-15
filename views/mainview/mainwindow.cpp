@@ -1,11 +1,13 @@
 #include "mainwindow.h"
 #include "../entryview/entryview.h"
 #include "ui_mainwindow.h"
-#include <QObject>
+#include <QFontDatabase>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow) {
   ui->setupUi(this);
+  QFontDatabase::addApplicationFont(":/fonts/assets/fonts/Amazdoomright-o1B0.ttf");
+
 
   EntryView *entryView = new EntryView(this);
   ui->mainWidget->addWidget(entryView);
