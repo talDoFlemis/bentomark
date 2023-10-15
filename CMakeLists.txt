@@ -23,6 +23,9 @@ set(PROJECT_SOURCES
         views/newton-raphson/newtonraphsonview.h
         views/newton-raphson/newtonraphsonview.cpp
         views/newton-raphson/newtonraphsonview.ui
+        views/modified-newton/modifiednewtonview.h
+        views/modified-newton/modifiednewtonview.cpp
+        views/modified-newton/modifiednewtonview.ui
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
