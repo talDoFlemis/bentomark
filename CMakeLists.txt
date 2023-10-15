@@ -26,6 +26,9 @@ set(PROJECT_SOURCES
         views/modified-newton/modifiednewtonview.h
         views/modified-newton/modifiednewtonview.cpp
         views/modified-newton/modifiednewtonview.ui
+        views/secant/secantview.h
+        views/secant/secantview.cpp
+        views/secant/secantview.ui
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
