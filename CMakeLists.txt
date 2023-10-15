@@ -42,6 +42,7 @@ else()
     else()
         add_executable(bentomark
             ${PROJECT_SOURCES}
+            resources.qrc
         )
     endif()
 endif()
