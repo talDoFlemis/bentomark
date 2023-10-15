@@ -22,6 +22,7 @@ public slots:
 
 signals:
     void statusBarTextChanged(const QString &text);
+    void currentStackedWidgetChanged(int index);
 
 
 private:

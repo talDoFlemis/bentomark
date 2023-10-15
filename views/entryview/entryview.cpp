@@ -18,14 +18,18 @@ EntryView::EntryView(QWidget *parent) : QWidget(parent), ui(new Ui::EntryView) {
 }
 
 void EntryView::onNewtonActionClicked() {
-  ui->title->setText("Newton");
-  emit statusBarTextChanged("Modified Newton Method Selected");
+  emit statusBarTextChanged("Newton Raphson Method Selected");
+  emit currentStackedWidgetChanged(1);
 }
 
 void EntryView::onModifiedActionClicked() {
-  ui->title->setText("Modified Newton");
+  emit statusBarTextChanged("Modified Newton Method Selected");
+  emit currentStackedWidgetChanged(2);
 }
 
-void EntryView::onSecantActionClicked() { ui->title->setText("Secant"); }
+void EntryView::onSecantActionClicked() {
+  emit statusBarTextChanged("Secant Method Selected");
+  emit currentStackedWidgetChanged(3);
+}
 
 EntryView::~EntryView() { delete ui; }
