@@ -20,7 +20,9 @@ set(PROJECT_SOURCES
         views/entryview/entryview.h
         views/entryview/entryview.cpp
         views/entryview/entryview.ui
-
+        views/newton-raphson/newtonraphsonview.h
+        views/newton-raphson/newtonraphsonview.cpp
+        views/newton-raphson/newtonraphsonview.ui
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
