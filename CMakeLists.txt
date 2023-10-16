@@ -29,6 +29,12 @@ set(PROJECT_SOURCES
         views/secant/secantview.h
         views/secant/secantview.cpp
         views/secant/secantview.ui
+        controllers/Function.cpp
+        controllers/Function.h
+        controllers/Model.cpp
+        controllers/Model.h
+        controllers/Secant.cpp
+        controllers/Secant.h
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
