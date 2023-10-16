@@ -29,6 +29,12 @@ set(PROJECT_SOURCES
         views/secant/secantview.h
         views/secant/secantview.cpp
         views/secant/secantview.ui
+        views/clash/clashview.h
+        views/clash/clashview.cpp
+        views/clash/clashview.ui
+        views/clash/bentomarkwidget.h
+        views/clash/bentomarkwidget.cpp
+        views/clash/bentomarkwidget.ui
         controllers/Function.cpp
         controllers/Function.h
         controllers/Model.cpp
