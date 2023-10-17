@@ -35,6 +35,7 @@ set(PROJECT_SOURCES
         controllers/Model.h
         controllers/Secant.cpp
         controllers/Secant.h
+        resources.qrc
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
@@ -56,7 +57,6 @@ else()
     else()
         add_executable(bentomark
             ${PROJECT_SOURCES}
-            resources.qrc
         )
     endif()
 endif()
