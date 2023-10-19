@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/fonts">
+        <file>assets/fonts/Amazdoomright-o1B0.ttf</file>
+    </qresource>
+</RCC>
