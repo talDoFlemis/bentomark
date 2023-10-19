@@ -1,4 +1,5 @@
 #include "Function.h"
+#include "ModelResult.h"
 
 #ifndef Model_H
 #define Model_H
@@ -11,6 +12,7 @@ private:
     int maxIttr;
 
 public:
+    ModelResult* results;
     Function* function;
     double firstStep;
     double nextStep;
@@ -22,6 +24,7 @@ public:
 
     void run();
     double getRoot();
+    ModelResult* getResults();
     virtual void updateNextStep() = 0;
     virtual void updateValues() = 0;
     virtual void setFirstStep(double step) = 0;
