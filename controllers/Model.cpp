@@ -1,11 +1,5 @@
+#include <cmath>
 #include "Model.h"
-
-double absoluteValue(double a) {
-    if (a >= 0) {
-        return a;
-    }
-    return -a;
-}
 
 void Model::setFunction(double constant) {
     this->function = new Function(constant);
@@ -30,8 +24,8 @@ void Model::run() {
         this->updateNextStep();
 
         this->results->root = this->nextStep;
-        this->results->errorInterval = absoluteValue(this->nextStep - this->firstStep);
-        this->results->errorFunction = absoluteValue(this->function->getValue(this->nextStep));
+        this->results->errorInterval = std::abs(this->nextStep - this->firstStep);
+        this->results->errorFunction = std::abs(this->function->getValue(this->nextStep));
 
         if (this->results->errorFunction < this->thrFunction || 
             this->results->errorInterval < this->thrInterval || 

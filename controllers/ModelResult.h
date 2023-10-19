@@ -7,6 +7,6 @@ public:
     double root;
     double errorInterval;
     double errorFunction;
-}
+};
 
 #endif
