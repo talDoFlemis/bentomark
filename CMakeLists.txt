@@ -35,6 +35,8 @@ set(PROJECT_SOURCES
         controllers/Model.h
         controllers/Secant.cpp
         controllers/Secant.h
+        controllers/Newton.cpp
+        controllers/Newton.h
         resources.qrc
 )
 
