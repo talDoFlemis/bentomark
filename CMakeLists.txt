@@ -33,10 +33,14 @@ set(PROJECT_SOURCES
         controllers/Function.h
         controllers/Model.cpp
         controllers/Model.h
+        controllers/ModelResult.cpp
+        controllers/ModelResult.h
         controllers/Secant.cpp
         controllers/Secant.h
         controllers/Newton.cpp
         controllers/Newton.h
+        controllers/NewtonModified.h
+        controllers/NewtonModified.cpp
         resources.qrc
 )
 
