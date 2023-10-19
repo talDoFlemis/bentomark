@@ -1,11 +1,5 @@
+#include <cmath>
 #include "Model.h"
-
-double absoluteValue(double a) {
-    if (a >= 0) {
-        return a;
-    }
-    return -a;
-}
 
 void Model::setFunction(double constant) {
     this->function = new Function(constant);
@@ -25,11 +19,16 @@ void Model::setMaxItterations(int maxIttr) {
 
 void Model::run() {
     int ittr = 0;
+    this->results = new ModelResult;
     while (1) {
         this->updateNextStep();
 
-        if (absoluteValue(this->function->getValue(this->nextStep)) < this->thrFunction || 
-            absoluteValue(this->nextStep - this->firstStep) < this->thrInterval || 
+        this->results->root = this->nextStep;
+        this->results->errorInterval = std::abs(this->nextStep - this->firstStep);
+        this->results->errorFunction = std::abs(this->function->getValue(this->nextStep));
+
+        if (this->results->errorFunction < this->thrFunction || 
+            this->results->errorInterval < this->thrInterval || 
             ittr >= this->maxIttr) {
                 this->root = this->nextStep;
                 break;
@@ -42,4 +41,8 @@ void Model::run() {
 
 double Model::getRoot() {
     return this->root;
+}
+
+ModelResult* Model::getResults() {
+    return this->results;
 }
