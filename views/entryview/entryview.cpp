@@ -7,7 +7,7 @@ EntryView::EntryView(QWidget *parent) : QWidget(parent), ui(new Ui::EntryView) {
   QFont logoFont("AmazDooMRight", 100);
   ui->title->setFont(logoFont);
 
-  parent->setWindowTitle("Welcome • Bentomark");
+  parent->setWindowTitle("Bentomark");
 
   connect(ui->newtonAction, SIGNAL(clicked()), this,
           SLOT(onNewtonActionClicked()));
@@ -21,26 +21,18 @@ EntryView::EntryView(QWidget *parent) : QWidget(parent), ui(new Ui::EntryView) {
 }
 
 void EntryView::onNewtonActionClicked() {
-  this->parentWidget()->setWindowTitle("Newton • Bentomark");
-  emit statusBarTextChanged("Newton Raphson Method Selected");
   emit currentStackedWidgetChanged(1);
 }
 
 void EntryView::onModifiedActionClicked() {
-  this->parentWidget()->setWindowTitle("Modified Newton • Bentomark");
-  emit statusBarTextChanged("Modified Newton Method Selected");
   emit currentStackedWidgetChanged(2);
 }
 
 void EntryView::onSecantActionClicked() {
-  this->parentWidget()->setWindowTitle("Secant • Bentomark");
-  emit statusBarTextChanged("Secant Method Selected");
   emit currentStackedWidgetChanged(3);
 }
 
 void EntryView::onClashActionClicked() {
-  this->parentWidget()->setWindowTitle("Clash of Methods • Bentomark");
-  emit statusBarTextChanged("Clash Method Selected");
   emit currentStackedWidgetChanged(4);
 }
 
