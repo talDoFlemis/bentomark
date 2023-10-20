@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>617</width>
-    <height>284</height>
+    <height>299</height>
    </rect>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -214,7 +214,7 @@
         <string notr="true"/>
        </property>
        <property name="text">
-        <string>Grupo Vagaba</string>
+        <string>Tema 2</string>
        </property>
        <property name="textFormat">
         <enum>Qt::AutoText</enum>
