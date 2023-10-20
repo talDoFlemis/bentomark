@@ -27,3 +27,16 @@ void ClashView::populateClashList() {
 }
 
 ClashView::~ClashView() { delete ui; }
+
+void ClashView::on_numberOfInputs_valueChanged(int arg1)
+{
+  QLayoutItem* child;
+  while ((child = ui->tablesLayout->takeAt(0)) != nullptr) {
+        if (child->widget()) {
+            delete child->widget();
+        }
+        delete child;
+  }
+  populateClashList();
+}
+

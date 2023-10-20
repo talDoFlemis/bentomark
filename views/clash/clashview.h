@@ -15,6 +15,9 @@ public:
     explicit ClashView(QWidget *parent = nullptr);
     ~ClashView();
 
+private slots:
+    void on_numberOfInputs_valueChanged(int arg1);
+
 private:
     Ui::ClashView *ui;
     void setupFonts();
