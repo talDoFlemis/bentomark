@@ -19,6 +19,7 @@ public slots:
   void onNewtonActionClicked();
   void onModifiedActionClicked();
   void onSecantActionClicked();
+  void onClashActionClicked();
 
 signals:
     void statusBarTextChanged(const QString &text);

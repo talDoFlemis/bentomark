@@ -20,6 +20,13 @@ public slots:
   void setStatusBarText(const QString &text);
   void setCurrentStackedWidget(int index);
 
+private slots:
+  void onActionHomeTriggered();
+  void onActionNewtonTriggered();
+  void onActionModifiedTriggered();
+  void onActionSecantTriggered();
+  void onActionClashTriggered();
+
 private:
   Ui::MainWindow *ui;
 };
