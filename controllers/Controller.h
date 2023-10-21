@@ -4,6 +4,7 @@
 #include "Model.h"
 #include <initializer_list>
 #include <vector>
+#include <iostream>
 
 // Controls the flow of models' execution.
 class Controller {
@@ -21,6 +22,8 @@ public:
 
   // setters
   void set_max_step(unsigned int max);
+
+  double entry_error_handler();
 
   // TODO: execute all models.
   // ResultData run();
