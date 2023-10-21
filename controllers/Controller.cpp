@@ -32,11 +32,15 @@ tuple<double, double> Controller::entry_error_handler()
             {
                 throw(upperLimit);
             }
+            if(lowerLimit == upperLimit)
+            {
+                throw(upperLimit);
+            }
             break;
         }
         catch (double e)
         {
-            cout << "Error: lower and upper limits must be a number with decimal point. Please try again.\n";
+            cout << "Error: lower and upper limits must be different numbers with decimal point. Please try again.\n";
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
         }
