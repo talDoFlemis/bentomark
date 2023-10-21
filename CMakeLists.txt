@@ -35,6 +35,9 @@ set(PROJECT_SOURCES
         views/clash/bentomarkwidget.h
         views/clash/bentomarkwidget.cpp
         views/clash/bentomarkwidget.ui
+        views/shared/sharedmethodpagewidget.h
+        views/shared/sharedmethodpagewidget.cpp 
+        views/shared/sharedmethodpagewidget.ui
         controllers/Function.cpp
         controllers/Function.h
         controllers/Model.cpp
