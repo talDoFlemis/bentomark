@@ -1,11 +1,23 @@
 #include "newtonraphsonview.h"
 #include "ui_newtonraphsonview.h"
+#include "../../controllers/Newton.h"
 
 NewtonRaphsonView::NewtonRaphsonView(QWidget *parent)
-    : QWidget(parent), ui(new Ui::NewtonRaphsonView) {
-  ui->setupUi(this);
-  QFont logoFont("AmazDooMRight", 100);
-  ui->title->setFont(logoFont);
+    : SharedMethodPageWidget("Newton RaphsoN", parent){
+
 }
 
-NewtonRaphsonView::~NewtonRaphsonView() { delete ui; }
+std::vector<ModelResult*> NewtonRaphsonView::getResults(double a, double epsilon, double initialGuess, int maxSteps){
+    Newton *newton = new Newton();
+    newton->setFunction(a);
+    newton->setFirstStep(initialGuess);
+    newton->setMaxItterations(maxSteps);
+    newton->setThrFunction(epsilon);
+    newton->setThrInterval(epsilon);
+    newton->run();
+    return newton->getResults();
+}
+
+NewtonRaphsonView::~NewtonRaphsonView(){
+
+}

@@ -32,49 +32,58 @@ void BentomarkWidget::onFindRootClicked() {
 
   double a = ui->aBox->value();
   double epsilon = ui->epsilonBox->value();
-  double maxSteps = ui->maxStepsBox->value();
+  double maxSteps = ui->maxStepsBox->value() - 1;
   double initialGuess = ui->guessBox->value();
 
-  ModelResult *newtonResults =
+  vector<ModelResult *> newtonResults =
       getNewtonResults(a, initialGuess, epsilon, maxSteps);
 
-  ModelResult *modifiedNewtonResults =
+  vector<ModelResult *> modifiedNewtonResults =
       getModifiedNewtonResults(a, initialGuess, epsilon, maxSteps);
 
-  ModelResult *secantResults =
+  vector<ModelResult *> secantResults =
       getSecantResults(a, initialGuess, epsilon, maxSteps);
 
   populateTable(newtonResults, modifiedNewtonResults, secantResults);
 }
 
-ModelResult *BentomarkWidget::getNewtonResults(double a, double initialGuess,
-                                               double epsilon, int maxSteps) {
+vector<ModelResult *> BentomarkWidget::getNewtonResults(double a,
+                                                        double initialGuess,
+                                                        double epsilon,
+                                                        int maxSteps) {
   Newton *newton = new Newton();
   newton->setFunction(a);
   newton->setFirstStep(initialGuess);
   newton->setMaxItterations(maxSteps);
+  newton->setThrFunction(epsilon);
+  newton->setThrInterval(epsilon);
   newton->run();
   return newton->getResults();
 }
 
-ModelResult *BentomarkWidget::getModifiedNewtonResults(double a,
-                                                       double initialGuess,
-                                                       double epsilon,
-                                                       int maxSteps) {
+vector<ModelResult *>
+BentomarkWidget::getModifiedNewtonResults(double a, double initialGuess,
+                                          double epsilon, int maxSteps) {
   NewtonModified *modified = new NewtonModified();
   modified->setFunction(a);
   modified->setFirstStep(initialGuess);
   modified->setMaxItterations(maxSteps);
+  modified->setThrFunction(epsilon);
+  modified->setThrInterval(epsilon);
   modified->run();
   return modified->getResults();
 }
 
-ModelResult *BentomarkWidget::getSecantResults(double a, double initialGuess,
-                                               double epsilon, int maxSteps) {
+vector<ModelResult *> BentomarkWidget::getSecantResults(double a,
+                                                        double initialGuess,
+                                                        double epsilon,
+                                                        int maxSteps) {
   Secant *secant = new Secant();
   secant->setFunction(a);
   secant->setFirstStep(initialGuess);
   secant->setMaxItterations(maxSteps);
+  secant->setThrFunction(epsilon);
+  secant->setThrInterval(epsilon);
   secant->run();
   return secant->getResults();
 }
@@ -93,34 +102,61 @@ void BentomarkWidget::setupTable() {
   ui->tableWidget->setSelectionBehavior(QAbstractItemView::SelectRows);
 }
 
-void BentomarkWidget::populateTable(ModelResult *newtonResults,
-                                    ModelResult *modifiedNewtonResults,
-                                    ModelResult *secantResults) {
-  ModelResult *newton = newtonResults;
-  ModelResult *modified = modifiedNewtonResults;
-  ModelResult *secant = secantResults;
+void BentomarkWidget::populateTable(vector<ModelResult *> newtonResults,
+                                    vector<ModelResult *> modifiedNewtonResults,
+                                    vector<ModelResult *> secantResults) {
+  int newtonSize = newtonResults.size();
+  int modifiedSize = modifiedNewtonResults.size();
+  int secantSize = secantResults.size();
 
-  ui->tableWidget->insertRow(0);
-  ui->tableWidget->setItem(0, 0,
-                           new QTableWidgetItem(QString::number(newton->root)));
-  ui->tableWidget->setItem(
-      0, 1, new QTableWidgetItem(QString::number(newton->errorFunction)));
-  ui->tableWidget->setItem(
-      0, 2, new QTableWidgetItem(QString::number(newton->errorInterval)));
+  int max = std::max(newtonSize, std::max(modifiedSize, secantSize));
 
-  ui->tableWidget->setItem(
-      0, 3, new QTableWidgetItem(QString::number(modified->root)));
-  ui->tableWidget->setItem(
-      0, 4, new QTableWidgetItem(QString::number(modified->errorFunction)));
-  ui->tableWidget->setItem(
-      0, 5, new QTableWidgetItem(QString::number(modified->errorInterval)));
+  for (int i = 0; i < max; i++) {
+    ModelResult *newton = newtonResults[i];
+    ModelResult *modified = modifiedNewtonResults[i];
+    ModelResult *secant = secantResults[i];
 
-  ui->tableWidget->setItem(0, 6,
-                           new QTableWidgetItem(QString::number(secant->root)));
-  ui->tableWidget->setItem(
-      0, 7, new QTableWidgetItem(QString::number(secant->errorFunction)));
-  ui->tableWidget->setItem(
-      0, 8, new QTableWidgetItem(QString::number(secant->errorInterval)));
+    ui->tableWidget->insertRow(i);
+
+    if (i >= newtonSize) {
+      ui->tableWidget->setItem(i, 0, new QTableWidgetItem(""));
+      ui->tableWidget->setItem(i, 1, new QTableWidgetItem(""));
+      ui->tableWidget->setItem(i, 2, new QTableWidgetItem(""));
+    } else {
+      ui->tableWidget->setItem(
+          i, 0, new QTableWidgetItem(QString::number(newton->root)));
+      ui->tableWidget->setItem(
+          i, 1, new QTableWidgetItem(QString::number(newton->errorFunction)));
+      ui->tableWidget->setItem(
+          i, 2, new QTableWidgetItem(QString::number(newton->errorInterval)));
+    }
+
+    if (i >= modifiedSize) {
+      ui->tableWidget->setItem(i, 3, new QTableWidgetItem(""));
+      ui->tableWidget->setItem(i, 4, new QTableWidgetItem(""));
+      ui->tableWidget->setItem(i, 5, new QTableWidgetItem(""));
+    } else {
+      ui->tableWidget->setItem(
+          i, 3, new QTableWidgetItem(QString::number(modified->root)));
+      ui->tableWidget->setItem(
+          i, 4, new QTableWidgetItem(QString::number(modified->errorFunction)));
+      ui->tableWidget->setItem(
+          i, 5, new QTableWidgetItem(QString::number(modified->errorInterval)));
+    }
+
+    if (i >= secantSize) {
+      ui->tableWidget->setItem(i, 6, new QTableWidgetItem(""));
+      ui->tableWidget->setItem(i, 7, new QTableWidgetItem(""));
+      ui->tableWidget->setItem(i, 8, new QTableWidgetItem(""));
+    } else {
+      ui->tableWidget->setItem(
+          i, 6, new QTableWidgetItem(QString::number(secant->root)));
+      ui->tableWidget->setItem(
+          i, 7, new QTableWidgetItem(QString::number(secant->errorFunction)));
+      ui->tableWidget->setItem(
+          i, 8, new QTableWidgetItem(QString::number(secant->errorInterval)));
+    }
+  }
 }
 
 BentomarkWidget::~BentomarkWidget() { delete ui; }
