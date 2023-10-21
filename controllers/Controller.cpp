@@ -12,12 +12,7 @@ std::vector<Model *> &Controller::get_models() { return models; }
 // setters
 void Controller::set_max_step(unsigned int max) { max_steps = max; }
 
-#include <iostream>
-#include <tuple>
-
-using namespace std;
-
-tuple<double, double> entry_error_handler()
+tuple<double, double> Controller::entry_error_handler()
 {
     double lowerLimit, upperLimit;
 
@@ -41,10 +36,10 @@ tuple<double, double> entry_error_handler()
         }
         catch (double e)
         {
-            cout << "\nError: lower and upper limits must be a number with decimal point. Please try again ";
-            break;
+            cout << "Error: lower and upper limits must be a number with decimal point. Please try again.\n";
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
         }
     }
-
-return make_tuple(lowerLimit, upperLimit);
+    return make_tuple(lowerLimit, upperLimit);
 }
