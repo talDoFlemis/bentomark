@@ -277,7 +277,7 @@ QScrollBar::add-page:horizontal, QScrollBar::sub-page:horizontal {
              <item row="3" column="1">
               <widget class="QSpinBox" name="maxStepsBox">
                <property name="maximum">
-                <number>10</number>
+                <number>20</number>
                </property>
                <property name="value">
                 <number>5</number>
@@ -351,6 +351,9 @@ QScrollBar::add-page:horizontal, QScrollBar::sub-page:horizontal {
 QTableView{
 	selection-background-color: #ff5458
 }</string>
+         </property>
+         <property name="sizeAdjustPolicy">
+          <enum>QAbstractScrollArea::AdjustToContents</enum>
          </property>
          <property name="showGrid">
           <bool>true</bool>
