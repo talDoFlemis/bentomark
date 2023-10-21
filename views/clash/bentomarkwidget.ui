@@ -123,6 +123,14 @@
        </item>
        <item>
         <widget class="QPushButton" name="findRootBtn">
+         <property name="font">
+          <font>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color: #ff8080</string>
+         </property>
          <property name="text">
           <string>Find Root</string>
          </property>

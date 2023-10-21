@@ -2,8 +2,10 @@
 #define BENTOMARKWIDGET_H
 
 #include "../../controllers/ModelResult.h"
+#include "vector"
 #include <QWidget>
 
+using namespace std;
 namespace Ui {
 class BentomarkWidget;
 }
@@ -21,17 +23,17 @@ public slots:
 
 private:
   Ui::BentomarkWidget *ui;
-  ModelResult *getNewtonResults(double a, double initialGuess, double epsilon,
-                                int maxSteps);
-  ModelResult *getModifiedNewtonResults(double a, double initialGuess,
-                                        double epsilon, int maxSteps);
-  ModelResult *getSecantResults(double a, double initialGuess, double epsilon,
-                                int maxSteps);
+  vector<ModelResult *> getNewtonResults(double a, double initialGuess,
+                                         double epsilon, int maxSteps);
+  vector<ModelResult *> getModifiedNewtonResults(double a, double initialGuess,
+                                                 double epsilon, int maxSteps);
+  vector<ModelResult *> getSecantResults(double a, double initialGuess,
+                                         double epsilon, int maxSteps);
 
   void setupTable();
-  void populateTable(ModelResult *newtonResults,
-                     ModelResult *modifiedNewtonResults,
-                     ModelResult *secantResults);
+  void populateTable(vector<ModelResult *> newtonResults,
+                     vector<ModelResult *> modifiedNewtonResults,
+                     vector<ModelResult *> secantResults);
 };
 
 #endif // BENTOMARKWIDGET_H

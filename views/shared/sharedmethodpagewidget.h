@@ -14,7 +14,7 @@ class SharedMethodPageWidget : public QWidget
 
 public:
     explicit SharedMethodPageWidget(std::string title, QWidget *parent = nullptr);
-    virtual ModelResult* getResults(double a, double epsilon, double initialGuess, int maxSteps) = 0;
+    virtual std::vector<ModelResult*> getResults(double a, double epsilon, double initialGuess, int maxSteps) = 0;
     ~SharedMethodPageWidget();
 
 private slots:

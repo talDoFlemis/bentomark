@@ -8,9 +8,10 @@ SharedMethodPageWidget::SharedMethodPageWidget(std::string title, QWidget *paren
     ui(new Ui::SharedMethodPageWidget)
 {
     ui->setupUi(this);
-    QFont logoFont("AmazDooMRight", 70);
+    QFont logoFont("AmazDooMRight", 80);
     ui->title->setFont(logoFont);
     ui->title->setText(QString::fromStdString(title));
+    setupTable();
 }
 
 void SharedMethodPageWidget::on_findRootBtn_clicked()
@@ -19,12 +20,10 @@ void SharedMethodPageWidget::on_findRootBtn_clicked()
 
     double a = ui->aBox->value();
     double epsilon = ui->epsilonBox->value();
-    double maxSteps = ui->maxStepsBox->value();
+    double maxSteps = ui->maxStepsBox->value() - 1;
     double initialGuess = ui->guessBox->value();
 
-    ModelResult* result = getResults(a, epsilon, initialGuess, maxSteps);
-    std::vector<ModelResult*> results;
-    results.push_back(result);
+    std::vector<ModelResult*> results = getResults(a, epsilon, initialGuess, maxSteps);
     populateTable(results);
 }
 
