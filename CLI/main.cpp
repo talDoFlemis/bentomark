@@ -1,6 +1,7 @@
 #include <iostream>
 #include <iomanip>
 #include <string>
+#include <vector>
 
 #include "Function.h"
 #include "Model.h"
@@ -55,26 +56,86 @@ int main() {
         x[i] = setInitialGuess(&aux, a[i], 50);
     }
 
+    double initialGuess;
+    std::cout << "Entre o valor do d0 ";
+    std::cin >> initialGuess;
+
+    std::cout << std::endl;
+
     double epsilon;
     std::cout << "Entre a precisão utilizada para computar a raíz: ";
     std::cin >> epsilon;
 
     std::cout << std::endl;
+    
 
     Model* models[3];
-    models[0] = new Newton();
-    models[1] = new Secant();
+    models[0] = new Secant();
+    models[1] = new Newton();
     models[2] = new NewtonModified();
-    std::cout << "          |   Método de Newton-Raphson    |       Método da Secante       |  Método de Newton Modificado  |" << std::endl;
-    std::cout << "          |   raíz     erro1      erro2   |   raíz     erro1      erro2   |   raíz     erro1      erro2   |" << std::endl;
+
     for (int i = 0; i < n; i++) {
+
         std::cout << std::setprecision(3);
-        std::cout << "a = " << a[i] << " |";
+        std::cout << "Calculo para a = " << a[i] << " |";
+        std::cout << std::endl;
         std::cout << std::setprecision(6);
         for (int j = 0; j < 3; j++) {
-            initializeModel(&(models[j]), a[i], x[i], epsilon, epsilon, 100);
+            
+            switch (j)
+            {
+            case 0:
+                std::cout << "             Método da Secante ===============================";
+                break;
+            case 1:
+                std::cout << "             Método de Newton-Raphson ========================";
+                break;
+            case 2:
+                std::cout << "             Método de Newton Modificado =====================";
+                break;
+
+            
+            default:
+                break;
+            }
+
+            std::cout << std::endl;
+            initializeModel(&models[j],a[i],initialGuess,epsilon,epsilon,20);
             models[j]->run();
-            std::cout << " " << models[j]->results->root << "  " << models[j]->results->errorInterval << "  " << models[j]->results->errorFunction << "  |"; 
-        } std::cout << std::endl;
+
+            std::vector<ModelResult*> results = models[j]->results;
+            int k = 0;
+            for (const ModelResult* result : results) {
+            
+            std::cout << "K:" << k << "    Root: " << result->root << "||   Error Interval: " << result->errorInterval  << "||  Error Function: " << result->errorFunction << "||" << std::endl;
+            k++;
+            }
+            std::cout << std::endl;
+            std::cout << std::endl;
+            std::cout << std::endl;
+        }
     }
+
+
+    
+    // std::vector<ModelResult*> results = modelo->getResults();
+
+
+
+    // Model* models[3];
+    // models[0] = new Newton();
+    // models[1] = new Secant();
+    // models[2] = new NewtonModified();
+    // std::cout << "          |   Método de Newton-Raphson    |       Método da Secante       |  Método de Newton Modificado  |" << std::endl;
+    // std::cout << "          |   raíz     erro1      erro2   |   raíz     erro1      erro2   |   raíz     erro1      erro2   |" << std::endl;
+    // for (int i = 0; i < n; i++) {
+    //     std::cout << std::setprecision(3);
+    //     std::cout << "a = " << a[i] << " |";
+    //     std::cout << std::setprecision(6);
+    //     for (int j = 0; j < 3; j++) {
+    //         initializeModel(&(models[j]), a[i], x[i], epsilon, epsilon, 100);
+    //         models[j]->run();
+    //         std::cout << " " << models[j]->results->root << "  " << models[j]->results->errorInterval << "  " << models[j]->results->errorFunction << "  |"; 
+    //     } std::cout << std::endl;
+    // }
 }
