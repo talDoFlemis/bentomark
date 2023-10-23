@@ -22,7 +22,7 @@ public:
     void setThrFunction(double thr);
     void setMaxItterations(int maxIttr);
 
-    void run(Controller &controller);
+    int run();
     double getRoot();
     ModelResult* getResults();
     virtual void updateNextStep() = 0;

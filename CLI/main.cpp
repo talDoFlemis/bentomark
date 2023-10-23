@@ -61,20 +61,29 @@ int main() {
 
     std::cout << std::endl;
 
+    int messages[3];
     Model* models[3];
     models[0] = new Newton();
     models[1] = new Secant();
     models[2] = new NewtonModified();
-    std::cout << "          |   Método de Newton-Raphson    |       Método da Secante       |  Método de Newton Modificado  |" << std::endl;
-    std::cout << "          |   raíz     erro1      erro2   |   raíz     erro1      erro2   |   raíz     erro1      erro2   |" << std::endl;
+    std::cout << "          |   Método de Newton-Raphson    |       Método da Secante       |  Método de Newton Modificado  | Convergiram?  |" << std::endl;
+    std::cout << "          |   raíz     erro1      erro2   |   raíz     erro1      erro2   |   raíz     erro1      erro2   | NR   SC   NM  |" << std::endl;
     for (int i = 0; i < n; i++) {
         std::cout << std::setprecision(3);
         std::cout << "a = " << a[i] << " |";
         std::cout << std::setprecision(6);
         for (int j = 0; j < 3; j++) {
             initializeModel(&(models[j]), a[i], x[i], epsilon, epsilon, 100);
-            models[j]->run();
+            messages[j] = models[j]->run();
             std::cout << " " << models[j]->results->root << "  " << models[j]->results->errorInterval << "  " << models[j]->results->errorFunction << "  |"; 
-        } std::cout << std::endl;
+        } 
+        for (int j = 0; j < 3; j++) {
+            if (messages[j] == 0) {
+                std::cout << " Si  ";
+            } else {
+                std::cout << " No  ";
+            }
+        }
+        std::cout << "|" << std::endl;
     }
 }

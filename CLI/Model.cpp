@@ -1,6 +1,5 @@
 #include <cmath>
 #include "Model.h"
-#include "Controller.h"
 
 void Model::setFunction(double constant) {
     this->function = new Function(constant);
@@ -18,7 +17,7 @@ void Model::setMaxItterations(int maxIttr) {
     this->maxIttr = maxIttr;
 }
 
-void Model::run(Controller &controller) {
+int Model::run() {
     int ittr = 0;
     this->results = new ModelResult;
     while (1) {
@@ -32,13 +31,16 @@ void Model::run(Controller &controller) {
             this->results->errorInterval < this->thrInterval || 
             ittr >= this->maxIttr) {
                 this->root = this->nextStep;
-                 controller.checkConvergence(this, ittr);
                 break;
         }
 
         this->updateValues();
         ittr++;
     }
+
+    if (ittr >= this->maxIttr)
+        return 1;
+    return 0;
 }
 
 double Model::getRoot() {
