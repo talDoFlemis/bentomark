@@ -19,7 +19,7 @@ void Model::setMaxItterations(int maxIttr) {
 
 void Model::run() {
     int ittr = 0;
-    this->results = std::vector<ModelResult*>();
+    this->results = new std::vector<ModelResult*>();
     while (1) {
         this->updateNextStep();
 
@@ -28,7 +28,7 @@ void Model::run() {
         result->errorInterval = std::abs(this->nextStep - this->firstStep);
         result->errorFunction = std::abs(this->function->getValue(this->nextStep));
 
-        this->results.push_back(result);
+        this->results->push_back(result);
 
         if (result->errorFunction < this->thrFunction || 
             result->errorInterval < this->thrInterval || 
@@ -46,6 +46,6 @@ double Model::getRoot() {
     return this->root;
 }
 
-std::vector<ModelResult*> Model::getResults() {
+std::vector<ModelResult*>* Model::getResults() {
     return this->results;
 }

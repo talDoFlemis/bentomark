@@ -152,7 +152,7 @@ int main() {
            
             models[j]->run();
 
-            std::vector<ModelResult*> results = models[j]->results;
+            std::vector<ModelResult*>* results = models[j]->results;
             int k = 0;
             if(setView){
 
@@ -181,7 +181,7 @@ int main() {
 
 
 
-                 for (const ModelResult* result : results) {
+                 for (const ModelResult* result : *results) {
 
                     std::cout << "K:" << k << "    Root: " << result->root << "||   Error Interval: " << result->errorInterval  << "||  Error Function: " << result->errorFunction << "||" << std::endl;
                     k++;
@@ -193,11 +193,11 @@ int main() {
 
 
                 }
-                if( std::isnan(results.back()->root) ){
+                if( std::isnan(results->back()->root) ){
                     std::cout << "Raiz = O método não converge para o número de passos ou valor inicial setado";
                 }
                 else{
-                    std::cout << "Raiz = " << results.back()->root;
+                    std::cout << "Raiz = " << results->back()->root;
                     std::cout << std::endl;
                 }
                  
@@ -210,7 +210,7 @@ int main() {
                     std::cout << "|   Método de Newton-Raphson    |       Método da Secante       |  Método de Newton Modificado  |" << std::endl;
                      std::cout << "|   raíz     erro1      erro2   |   raíz     erro1      erro2   |   raíz     erro1      erro2   |" << std::endl;
                 }
-                std::cout << "  " << results.back()->root << "  " << results.back()->errorInterval << "  " << results.back()->errorFunction << "  |"; 
+                std::cout << "  " << results->back()->root << "  " << results->back()->errorInterval << "  " << results->back()->errorFunction << "  |"; 
             }
 
 
