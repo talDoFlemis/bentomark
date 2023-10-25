@@ -39,14 +39,17 @@ double setInitialGuess(Function** foo, double a, int maxIttr) {
     return 0 + idx * 0.1;
 }
 
+
+
+
 int main() {
 
-    std::cout << ".______    _______ .__   __. .___________.  ______   .___  ___.      ___      .______       __  ___" << std::endl;
-    std::cout << "|   _  \\  |   ____||  \\ |  | |           | /  __  \\  |   \\/   |     /   \\     |   _  \\     |  |/  /" << std::endl;
-    std::cout << "|  |_)  | |  |__   |   \\|  | `---|  |----`|  |  |  | |  \\  /  |    /  ^  \\    |  |_)  |    |  '  /" << std::endl;
-    std::cout << "|   _  <  |  __|  |  . `  |     |  |     |  |  |  | |  |\\/|  |   /  /_\\  \\   |      /     |    <" << std::endl;
-    std::cout << "|  |_)  | |  |____ |  |\\   |     |  |     |  `--'  | |  |  |  |  /  _____  \\  |  |\\  \\----.|  .  \\" << std::endl;
-    std::cout << "|______/  |_______||__| \\__|     |__|      \\______/  |__|  |__| /__/     \\__\\ | _| `._____||__|\\__\\" << std::endl;
+    std::cout << ".______    _______ .__   __. .___________.   ______   .___    ___.      ___        .______       __  ___" << std::endl;
+    std::cout << "|   _  \\ |   ____||  \\ |  | |           | /  __  \\  |   \\/   |     /   \\      |   _  \\    |  |/  /" << std::endl;
+    std::cout << "|  |_)  | |  |__   |   \\|  | `---|  |----`|  |  |  |  |  \\  /  |    /  ^  \\     |  |_)  |    |  '  /" << std::endl;
+    std::cout << "|   _  <  |   __|  |  . `   |     |  |     |  |  |  |  |  |\\/|  |   /  /_\\  \\   |      /     |    <" << std::endl;
+    std::cout << "|  |_)  | |  |____ |  |\\   |     |  |     |  `--'  |  |  |   |  |  /  _____  \\   |  |\\\\----.|  .  \\" << std::endl;
+    std::cout << "|______/  |_______||__| \\__|     |__|     \\______/   |__|   |__| /__/     \\__\\ | _| `._____||__|\\__\\" << std::endl;
 
 
     std::cout << std::endl;
@@ -85,30 +88,62 @@ int main() {
         std::cout << "Entre o valor do d0: ";
         std::cin >> initialGuess;
     }
-
-
-    
-    
-
     std::cout << std::endl;
 
-    double epsilon;
-    std::cout << "Entre a precisão utilizada para computar a raíz: ";
-    std::cin >> epsilon;
 
-    std::cout << std::endl;
+    std::string setEpslon;
+    double epsilon1;
+    double epsilon2;
+    std::cin.ignore();
+    while (true) {
+   
+        std::cout << "Você deseja utilizar epslon 1, 2 ou ambos? [E1 || E2 || A]: ";
+        std::getline(std::cin, setEpslon);
+        std::cout << std::endl;
+
+        if (setEpslon == "E1"){
+            std::cout << "Entre o epslon 1: ";
+            std::cin >> epsilon1;
+            std::cout << std::endl;
+
+           epsilon2 = std::nan("");
+
+            break;
+        } else if (setEpslon == "E2"){
+            std::cout << "Entre o epslon 2: ";
+            std::cin >> epsilon2;
+            std::cout << std::endl;
+
+            epsilon1 = std::nan("");
+
+            break;
+        }
+        
+        else if (setEpslon == "A"){
+            std::cout << "Entre o epslon 1: ";
+            std::cin >> epsilon1;
+            std::cout << std::endl;
+
+            std::cout << "Entre o epslon 2: ";
+            std::cin >> epsilon2;
+            std::cout << std::endl;
+
+            break;
+        }
+        else {
+            std::cout << "Opção inválida. Tente novamente." << std::endl;
+        }
+    }
+    
 
     double steps;
-    std::cout << "Entre a quantidade de passos que devem ser realizadas: ";
+    std::cout << "Entre a quantidade máxima de passos que devem ser realizadas: ";
     std::cin >> steps;
-
     std::cout << std::endl;
-
 
     bool setView;
     std::cout << "Deseja visualizar todos os passos? (1: sim  || 0: não): ";
     std::cin >> setView;
-
     std::cout << std::endl;
 
 
@@ -116,11 +151,6 @@ int main() {
     models[0] = new Secant();
     models[1] = new Newton();
     models[2] = new NewtonModified();
-
-
-
-   
-
 
     if (!setView)
     {
@@ -136,18 +166,17 @@ int main() {
         std::cout << std::endl;
         std::cout << "============================================================"<<std::endl;
         std::cout << std::endl;
-        std::cout << "Calculo para a = " << a[i] << " |     ";
-        std::cout << std::endl;
+        std::cout << "Calculo para a = " << a[i] << "  |  " << "d0 = "<< (setInitialGuess ? initialGuess : x[i]) << "  |  " << "E1 = " << std::scientific << epsilon1 << "  E2 = " << std::scientific << epsilon2 << std::endl;
         std::cout << std::setprecision(6);
         for (int j = 0; j < 3; j++) {
             
            
 
             if (setInitialGuess){
-                 initializeModel(&models[j],a[i],initialGuess,epsilon,epsilon,steps);
+                 initializeModel(&models[j],a[i],initialGuess,epsilon1,epsilon2,steps);
             }
             else{
-                 initializeModel(&models[j],a[i],x[i],epsilon,epsilon,steps);
+                 initializeModel(&models[j],a[i],x[i],epsilon1,epsilon2,steps);
             }
            
             models[j]->run();
@@ -200,8 +229,6 @@ int main() {
                     std::cout << "Raiz = " << results->back()->root;
                     std::cout << std::endl;
                 }
-                 
-
 
             }
 
