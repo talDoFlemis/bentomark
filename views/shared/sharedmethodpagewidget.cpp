@@ -21,7 +21,7 @@ void SharedMethodPageWidget::on_findRootBtn_clicked()
     double a = ui->aBox->value();
     double epsilon = ui->epsilonBox->value();
     double maxSteps = ui->maxStepsBox->value() - 1;
-    double initialGuess = ui->guessBox->value();
+    double initialGuess; /* = ui->guessBox->value();*/
 
     std::vector<ModelResult*> results = getResults(a, epsilon, initialGuess, maxSteps);
     populateTable(results);
