@@ -3,10 +3,7 @@
 #include "ui_secantview.h"
 
 SecantView::SecantView(QWidget *parent)
-    : SharedMethodPageWidget("SecanT", parent) {}
-
-
-
+    : SharedMethodPageWidget("SecanT", parent, "O método da secante é uma maneira de encontrar as raízes de uma equação matemática, tipo aquelas que usamos para descobrir onde uma curva toca o eixo. Em vez de usar matemática complicada, ele basicamente olha para dois pontos nessa curva e vê em que direção ela está indo. Então, dá um passo à frente e repete o processo até chegar bem pertinho da resposta certa.") {}
 
 
 

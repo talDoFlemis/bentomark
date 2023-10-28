@@ -18,8 +18,8 @@
      </property>
      <property name="sizeHint" stdset="0">
       <size>
-       <width>20</width>
-       <height>40</height>
+       <width>5</width>
+       <height>20</height>
       </size>
      </property>
     </spacer>
@@ -81,36 +81,7 @@
     </layout>
    </item>
    <item>
-    <spacer name="verticalSpacer_2">
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>20</width>
-       <height>40</height>
-      </size>
-     </property>
-    </spacer>
-   </item>
-   <item>
     <layout class="QGridLayout" name="gridLayout">
-     <item row="5" column="2">
-      <widget class="QLabel" name="label">
-       <property name="styleSheet">
-        <string notr="true"/>
-       </property>
-       <property name="text">
-        <string>&lt;a href=&quot;https://github.com/talDoFlemis/bentomark&quot;&gt;&lt;span style=&quot;color:#cbe3e7&quot;&gt;GitHub&lt;/span&gt;&lt;/a&gt;</string>
-       </property>
-       <property name="textFormat">
-        <enum>Qt::AutoText</enum>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
-       </property>
-      </widget>
-     </item>
      <item row="5" column="0">
       <widget class="QLabel" name="label_2">
        <property name="text">
@@ -121,8 +92,50 @@
        </property>
       </widget>
      </item>
-     <item row="1" column="0">
-      <spacer name="horizontalSpacer">
+     <item row="0" column="1">
+      <widget class="QPushButton" name="newtonAction">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="font">
+        <font>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: #ff8080</string>
+       </property>
+       <property name="text">
+        <string>Newton-Raphson Method</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1">
+      <widget class="QPushButton" name="secantAction">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="font">
+        <font>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: #ff8080</string>
+       </property>
+       <property name="text">
+        <string>Secant Method</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="2">
+      <spacer name="horizontalSpacer_2">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
@@ -150,8 +163,24 @@
        </property>
       </spacer>
      </item>
-     <item row="1" column="2">
-      <spacer name="horizontalSpacer_2">
+     <item row="5" column="2">
+      <widget class="QLabel" name="label">
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
+       <property name="text">
+        <string>&lt;a href=&quot;https://github.com/talDoFlemis/bentomark&quot;&gt;&lt;span style=&quot;color:#cbe3e7&quot;&gt;GitHub&lt;/span&gt;&lt;/a&gt;</string>
+       </property>
+       <property name="textFormat">
+        <enum>Qt::AutoText</enum>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <spacer name="horizontalSpacer">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
@@ -163,14 +192,8 @@
        </property>
       </spacer>
      </item>
-     <item row="2" column="1">
-      <widget class="QPushButton" name="secantAction">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
+     <item row="3" column="1">
+      <widget class="QPushButton" name="clashAction">
        <property name="font">
         <font>
          <bold>true</bold>
@@ -180,7 +203,7 @@
         <string notr="true">color: #ff8080</string>
        </property>
        <property name="text">
-        <string>Secant Method</string>
+        <string>Clash of Methods</string>
        </property>
       </widget>
      </item>
@@ -224,41 +247,88 @@
        </property>
       </widget>
      </item>
-     <item row="0" column="1">
-      <widget class="QPushButton" name="newtonAction">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
+    </layout>
+   </item>
+   <item>
+    <spacer name="verticalSpacer_2">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeType">
+      <enum>QSizePolicy::Fixed</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>10</width>
+       <height>5</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item>
+    <widget class="QLabel" name="label_3">
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>PARA VOVÓ ENTENDER:</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_4">
+     <item>
+      <spacer name="horizontalSpacer_3">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>5</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPlainTextEdit" name="problemDescription">
+       <property name="minimumSize">
+        <size>
+         <width>700</width>
+         <height>0</height>
+        </size>
        </property>
        <property name="font">
         <font>
-         <bold>true</bold>
+         <pointsize>12</pointsize>
         </font>
        </property>
-       <property name="styleSheet">
-        <string notr="true">color: #ff8080</string>
+       <property name="frameShape">
+        <enum>QFrame::NoFrame</enum>
        </property>
-       <property name="text">
-        <string>Newton-Raphson Method</string>
+       <property name="plainText">
+        <string>Neste problema, estamos lidando com um fenômeno natural descrito por uma função matemática f(d) = a*ed – 4*d2,. Queremos encontrar um valor específico (deslocamento &quot;d&quot;) que satisfaça certas condições. Para fazer isso, usaremos três métodos diferentes: Newton-Raphson, Newton Modificado e Secante. Esses métodos são como estratégias matemáticas para se aproximar da resposta correta, sem precisar de cálculos muito difíceis. Vamos testar esses métodos com alguns valores iniciais, compará-los e analisar como eles se comportam diante de variações nos parâmetros do fenômeno. No final, teremos uma ideia de qual método é mais eficaz para resolver esse problema específico.</string>
        </property>
       </widget>
      </item>
-     <item row="3" column="1">
-      <widget class="QPushButton" name="clashAction">
-       <property name="font">
-        <font>
-         <bold>true</bold>
-        </font>
+     <item>
+      <spacer name="horizontalSpacer_4">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
        </property>
-       <property name="styleSheet">
-        <string notr="true">color: #ff8080</string>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>5</width>
+         <height>20</height>
+        </size>
        </property>
-       <property name="text">
-        <string>Clash of Methods</string>
-       </property>
-      </widget>
+      </spacer>
      </item>
     </layout>
    </item>

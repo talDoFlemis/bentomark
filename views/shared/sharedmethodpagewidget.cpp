@@ -3,7 +3,7 @@
 #include "../../controllers/ModelResult.h"
 using namespace std;
 
-SharedMethodPageWidget::SharedMethodPageWidget(std::string title, QWidget *parent) :
+SharedMethodPageWidget::SharedMethodPageWidget(std::string title, QWidget *parent, std::string description) :
     QWidget(parent),
     ui(new Ui::SharedMethodPageWidget)
 {
@@ -12,6 +12,7 @@ SharedMethodPageWidget::SharedMethodPageWidget(std::string title, QWidget *paren
     ui->title->setFont(logoFont);
     ui->title->setText(QString::fromStdString(title));
     setupTable();
+    ui->description->setPlainText(QString::fromStdString(description));
 }
 
 void SharedMethodPageWidget::on_findRootBtn_clicked()
