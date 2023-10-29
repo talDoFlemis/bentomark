@@ -44,12 +44,12 @@ double setInitialGuess(Function** foo, double a, int maxIttr) {
 
 int main() {
 
-    std::cout << ".______    _______ .__   __. .___________.   ______   .___    ___.      ___        .______       __  ___" << std::endl;
-    std::cout << "|   _  \\ |   ____||  \\ |  | |           | /  __  \\  |   \\/   |     /   \\      |   _  \\    |  |/  /" << std::endl;
-    std::cout << "|  |_)  | |  |__   |   \\|  | `---|  |----`|  |  |  |  |  \\  /  |    /  ^  \\     |  |_)  |    |  '  /" << std::endl;
-    std::cout << "|   _  <  |   __|  |  . `   |     |  |     |  |  |  |  |  |\\/|  |   /  /_\\  \\   |      /     |    <" << std::endl;
-    std::cout << "|  |_)  | |  |____ |  |\\   |     |  |     |  `--'  |  |  |   |  |  /  _____  \\   |  |\\\\----.|  .  \\" << std::endl;
-    std::cout << "|______/  |_______||__| \\__|     |__|     \\______/   |__|   |__| /__/     \\__\\ | _| `._____||__|\\__\\" << std::endl;
+      std::cout << ".______    _______ .__   __. .___________.  ______      ___     ______  .___  ___.      ___      .______       __  ___" << std::endl;
+    std::cout << "|   _  \\  |   ____||  \\ |  | |           | /  __  \\    /  /    /  /\\  \\ |   \\/   |     /   \\     |   _  \\     |  |/  /" << std::endl;
+    std::cout << "|  |_)  | |  |__   |   \\|  | `---|  |----`|  |  |  |  /  /    /  /  \\  \\|  \\  /  |    /  ^  \\    |  |_)  |    |  '  /" << std::endl;
+    std::cout << "|   _  <  |   __|  |  . `  |     |  |     |  |  |  | <  <    /  /    >  >  |\\/|  |   /  /_\\  \\   |      /     |    <" << std::endl;
+    std::cout << "|  |_)  | |  |____ |  |\\   |     |  |     |  `--'  |  \\  \\  /  /    /  /|  |  |  |  /  _____  \\  |  |\\  \\----.|  .  \\" << std::endl;
+    std::cout << "|______/  |_______||__| \\__|     |__|      \\______/    \\__\\/__/    /__/ |__|  |__| /__/     \\__\\ | _| `._____||__|\\__\\" << std::endl;
 
 
     std::cout << std::endl;
@@ -107,7 +107,6 @@ int main() {
             std::cout << std::endl;
 
            epsilon2 = std::nan("");
-
             break;
         } else if (setEpslon == "E2"){
             std::cout << "Entre o epslon 2: ";
@@ -167,7 +166,7 @@ int main() {
         std::cout << "============================================================"<<std::endl;
         std::cout << std::endl;
         std::cout << "Calculo para a = " << a[i] << "  |  " << "d0 = "<< (setInitialGuess ? initialGuess : x[i]) << "  |  " << "E1 = " << std::scientific << epsilon1 << "  E2 = " << std::scientific << epsilon2 << std::endl;
-        std::cout << std::setprecision(6);
+        std::cout << std::setprecision(6) << std::fixed;
         for (int j = 0; j < 3; j++) {
             
            
