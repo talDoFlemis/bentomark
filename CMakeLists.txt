@@ -29,12 +29,27 @@ set(PROJECT_SOURCES
         views/secant/secantview.h
         views/secant/secantview.cpp
         views/secant/secantview.ui
+        views/clash/clashview.h
+        views/clash/clashview.cpp
+        views/clash/clashview.ui
+        views/clash/bentomarkwidget.h
+        views/clash/bentomarkwidget.cpp
+        views/clash/bentomarkwidget.ui
+        views/shared/sharedmethodpagewidget.h
+        views/shared/sharedmethodpagewidget.cpp 
+        views/shared/sharedmethodpagewidget.ui
         controllers/Function.cpp
         controllers/Function.h
         controllers/Model.cpp
         controllers/Model.h
+        controllers/ModelResult.cpp
+        controllers/ModelResult.h
         controllers/Secant.cpp
         controllers/Secant.h
+        controllers/Newton.cpp
+        controllers/Newton.h
+        controllers/NewtonModified.h
+        controllers/NewtonModified.cpp
         resources.qrc
 )
 

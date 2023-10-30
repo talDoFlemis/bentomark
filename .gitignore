@@ -86,3 +86,5 @@ _deps
 .cache
 bentomark_autogen
 bentomark
+.qt
+CLI/main

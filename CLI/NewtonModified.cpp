@@ -8,7 +8,7 @@ void NewtonModified::setFirstStep(double step) {
 
     this->derivative = this->function->getDerivativeValue(step);
 
-    while (std::abs(this->derivative) <= 0.01) {
+    if (std::abs(this->derivative) <= 0.01) {
         if (this->derivative < 0) this->derivative -= 0.01;
         if (this->derivative >= 0) this->derivative += 0.01;
     }

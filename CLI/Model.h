@@ -13,7 +13,7 @@ private:
     int maxIttr;
 
 public:
-    std::vector<ModelResult*> results;
+    std::vector<ModelResult*>* results;
     Function* function;
     double firstStep;
     double nextStep;
@@ -25,7 +25,7 @@ public:
 
     void run();
     double getRoot();
-    std::vector<ModelResult*> getResults();
+    std::vector<ModelResult*>* getResults();
     virtual void updateNextStep() = 0;
     virtual void updateValues() = 0;
     virtual void setFirstStep(double step) = 0;

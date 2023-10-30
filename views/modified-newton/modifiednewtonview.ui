@@ -15,18 +15,6 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout">
-   <item>
-    <widget class="QLabel" name="title">
-     <property name="text">
-      <string>ModifieD NewtoN</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-    </widget>
-   </item>
-  </layout>
  </widget>
  <pixmapfunction/>
  <connections/>
