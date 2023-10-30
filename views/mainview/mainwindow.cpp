@@ -7,6 +7,7 @@
 #include "../modified-newton/modifiednewtonview.h"
 #include "../newton-raphson/newtonraphsonview.h"
 #include "../secant/secantview.h"
+#include "../about/about.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow) {
@@ -19,12 +20,14 @@ MainWindow::MainWindow(QWidget *parent)
   ModifiedNewtonView *modifiedNewtonView = new ModifiedNewtonView(this);
   SecantView *secantView = new SecantView(this);
   ClashView *clashView = new ClashView(this);
+  AboutView *aboutView = new AboutView(this);
 
   ui->mainWidget->addWidget(entryView);
   ui->mainWidget->addWidget(newtonRaphsonView);
   ui->mainWidget->addWidget(modifiedNewtonView);
   ui->mainWidget->addWidget(secantView);
   ui->mainWidget->addWidget(clashView);
+  ui->mainWidget->addWidget(aboutView);
 
   connect(entryView, SIGNAL(statusBarTextChanged(QString)), this,
           SLOT(setStatusBarText(QString)));

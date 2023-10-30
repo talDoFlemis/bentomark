@@ -37,3 +37,9 @@ void EntryView::onClashActionClicked() {
 }
 
 EntryView::~EntryView() { delete ui; }
+
+void EntryView::on_pushButton_clicked()
+{
+  emit currentStackedWidgetChanged(5);
+}
+

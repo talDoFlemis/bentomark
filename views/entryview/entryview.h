@@ -26,6 +26,9 @@ signals:
     void currentStackedWidgetChanged(int index);
 
 
+private slots:
+    void on_pushButton_clicked();
+
 private:
     Ui::EntryView *ui;
 };

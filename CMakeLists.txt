@@ -38,6 +38,9 @@ set(PROJECT_SOURCES
         views/shared/sharedmethodpagewidget.h
         views/shared/sharedmethodpagewidget.cpp 
         views/shared/sharedmethodpagewidget.ui
+        views/about/about.h
+        views/about/about.cpp 
+        views/about/about.ui
         controllers/Function.cpp
         controllers/Function.h
         controllers/Model.cpp
