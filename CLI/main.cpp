@@ -61,8 +61,18 @@ int main() {
     
 
     int n;
-    std::cout << "Entre o número de valores para a: ";
-    std::cin >> n;
+     while (true) {
+        std::cout << "Entre o número de valores para a: ";
+        std::cin >> n;
+
+        if (std::cin.fail() || n < 0) {
+            std::cin.clear(); // Limpa o estado de erro
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Ignora o restante da linha inválida
+            std::cout << "Valor inválido para n. Certifique-se de inserir um número inteiro não negativo." << std::endl;
+        } else {
+            break; // Sai do loop se o valor for válido
+        }
+    }
 
     std::cout << std::endl;
 
@@ -72,6 +82,14 @@ int main() {
     for (int i = 0; i < n; i++) {
         std::cout << "Entre o valor de a" << i+1 << ": ";
         std::cin >> a[i];
+        
+        while (std::cin.fail()) {
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            std::cout << "Valor inválido. Certifique-se de inserir um número." << std::endl;
+            std::cout << "Entre o valor de a" << i + 1 << ": ";
+            std::cin >> a[i];
+        }
         x[i] = setInitialGuess(&aux, a[i], 50);
     }
 
@@ -79,16 +97,35 @@ int main() {
 
 
     bool setInitialGuess;
-    std::cout << "Deseja inserir o d0 ou utilizar um fornecido pelo sistema? (1: inserir  || 0: fornecido): ";
+     std::cout << "Deseja inserir o d0 ou utilizar um fornecido pelo sistema? (1: inserir || 0: fornecido): ";
     std::cin >> setInitialGuess;
+
+    while (std::cin.fail() || (setInitialGuess != 0 && setInitialGuess != 1)) {
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        std::cout << "Valor inválido. Por favor, escolha 0 (fornecido) ou 1 (inserir)." << std::endl;
+        std::cout << "Deseja inserir o d0 ou utilizar um fornecido pelo sistema? (1: inserir || 0: fornecido): ";
+        std::cin >> setInitialGuess;
+    }
+
     std::cout << std::endl;
+
     
-    double initialGuess;
-    if(setInitialGuess){
+     double initialGuess;
+    if (setInitialGuess) {
         std::cout << "Entre o valor do d0: ";
         std::cin >> initialGuess;
+
+        while (std::cin.fail()) {
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            std::cout << "Valor inválido. Certifique-se de inserir um número." << std::endl;
+            std::cout << "Entre o valor do d0: ";
+            std::cin >> initialGuess;
+        }
     }
     std::cout << std::endl;
+
 
 
     std::string setEpslon;
@@ -104,13 +141,25 @@ int main() {
         if (setEpslon == "E1"){
             std::cout << "Entre o epslon 1: ";
             std::cin >> epsilon1;
-            std::cout << std::endl;
-
-           epsilon2 = std::nan("");
+            while (std::cin.fail()) {
+                std::cin.clear();
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                std::cout << "Valor inválido. Certifique-se de inserir um número." << std::endl;
+                std::cout << "Entre o epslon 1: ";
+                std::cin >> epsilon1;
+            }
+            epsilon2 = std::nan("");
             break;
         } else if (setEpslon == "E2"){
             std::cout << "Entre o epslon 2: ";
             std::cin >> epsilon2;
+            while (std::cin.fail()) {
+                std::cin.clear();
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                std::cout << "Valor inválido. Certifique-se de inserir um número." << std::endl;
+                std::cout << "Entre o epslon 2: ";
+                std::cin >> epsilon2;
+            }
             std::cout << std::endl;
 
             epsilon1 = std::nan("");
@@ -121,10 +170,24 @@ int main() {
         else if (setEpslon == "A"){
             std::cout << "Entre o epslon 1: ";
             std::cin >> epsilon1;
+            while (std::cin.fail()) {
+                std::cin.clear();
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                std::cout << "Valor inválido. Certifique-se de inserir um número." << std::endl;
+                std::cout << "Entre o epslon 1: ";
+                std::cin >> epsilon1;
+            }
             std::cout << std::endl;
 
             std::cout << "Entre o epslon 2: ";
             std::cin >> epsilon2;
+            while (std::cin.fail()) {
+                std::cin.clear();
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                std::cout << "Valor inválido. Certifique-se de inserir um número." << std::endl;
+                std::cout << "Entre o epslon 2: ";
+                std::cin >> epsilon2;
+            }
             std::cout << std::endl;
 
             break;
@@ -136,13 +199,30 @@ int main() {
     
 
     double steps;
-    std::cout << "Entre a quantidade máxima de passos que devem ser realizadas: ";
+    std::cout << "Entre a quantidade máxima de passos que devem ser realizados: ";
     std::cin >> steps;
+
+    while (std::cin.fail()) {
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        std::cout << "Valor inválido. Certifique-se de inserir um número válido." << std::endl;
+        std::cout << "Entre a quantidade máxima de passos que devem ser realizados: ";
+        std::cin >> steps;
+    }
+
     std::cout << std::endl;
 
     bool setView;
     std::cout << "Deseja visualizar todos os passos? (1: sim  || 0: não): ";
     std::cin >> setView;
+
+    while (std::cin.fail() || (setView != 0 && setView != 1)) {
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        std::cout << "Valor inválido. Por favor, escolha 0 (não) ou 1 (sim)." << std::endl;
+        std::cout << "Deseja visualizar todos os passos? (1: sim  || 0: não): ";
+        std::cin >> setView;
+    }
     std::cout << std::endl;
 
 
