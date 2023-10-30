@@ -13,7 +13,7 @@ BentomarkWidget::BentomarkWidget(int pos, double initialGuess, double epsilon,
     : QWidget(parent), ui(new Ui::BentomarkWidget) {
   ui->setupUi(this);
 
-  ui->guessBox->setValue(initialGuess);
+//  ui->guessBox->setValue(initialGuess);
   ui->epsilonBox->setValue(epsilon);
   ui->maxStepsBox->setValue(maxSteps);
 
@@ -33,7 +33,7 @@ void BentomarkWidget::onFindRootClicked() {
   double a = ui->aBox->value();
   double epsilon = ui->epsilonBox->value();
   double maxSteps = ui->maxStepsBox->value() - 1;
-  double initialGuess = ui->guessBox->value();
+  double initialGuess; /*= ui->guessBox->value();*/
 
   vector<ModelResult *> newtonResults =
       getNewtonResults(a, initialGuess, epsilon, maxSteps);
@@ -47,13 +47,39 @@ void BentomarkWidget::onFindRootClicked() {
   populateTable(newtonResults, modifiedNewtonResults, secantResults);
 }
 
+
+inline double setInitialGuess(Function** foo, double a, int maxIttr) {
+  (*foo)->setConstant(a);
+
+  int idx = 1;
+  bool signSwapped = false;
+  double previousValue = (*foo)->getValue(0);
+  double nextValue;
+
+  while (idx < maxIttr && signSwapped == false) {
+      nextValue = (*foo)->getValue(0 + idx * 0.01);
+      if (nextValue * previousValue < 0) {
+          return 0 + idx * 0.1;
+      }
+      previousValue = nextValue;
+      idx++;
+  }
+  return 0 + idx * 0.1;
+}
+
+
 vector<ModelResult *> BentomarkWidget::getNewtonResults(double a,
                                                         double initialGuess,
                                                         double epsilon,
                                                         int maxSteps) {
+
+
+  Function* aux = new Function();
+  double FirstGuess = setInitialGuess(&aux,a, 50);
+
   Newton *newton = new Newton();
   newton->setFunction(a);
-  newton->setFirstStep(initialGuess);
+  newton->setFirstStep(FirstGuess);
   newton->setMaxItterations(maxSteps);
   newton->setThrFunction(epsilon);
   newton->setThrInterval(epsilon);
@@ -64,9 +90,14 @@ vector<ModelResult *> BentomarkWidget::getNewtonResults(double a,
 vector<ModelResult *>
 BentomarkWidget::getModifiedNewtonResults(double a, double initialGuess,
                                           double epsilon, int maxSteps) {
+
+  Function* aux = new Function();
+  double FirstGuess = setInitialGuess(&aux,a, 50);
+
+
   NewtonModified *modified = new NewtonModified();
   modified->setFunction(a);
-  modified->setFirstStep(initialGuess);
+  modified->setFirstStep(FirstGuess);
   modified->setMaxItterations(maxSteps);
   modified->setThrFunction(epsilon);
   modified->setThrInterval(epsilon);
@@ -78,9 +109,14 @@ vector<ModelResult *> BentomarkWidget::getSecantResults(double a,
                                                         double initialGuess,
                                                         double epsilon,
                                                         int maxSteps) {
+
+  Function* aux = new Function();
+  double FirstGuess = setInitialGuess(&aux,a, 50);
+
+
   Secant *secant = new Secant();
   secant->setFunction(a);
-  secant->setFirstStep(initialGuess);
+  secant->setFirstStep(FirstGuess);
   secant->setMaxItterations(maxSteps);
   secant->setThrFunction(epsilon);
   secant->setThrInterval(epsilon);

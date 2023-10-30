@@ -16,7 +16,7 @@ void ClashView::setupFonts() {
 }
 
 void ClashView::populateClashList() {
-  double initialGuess = ui->defaultGuess->value();
+  double initialGuess; /* = ui->defaultGuess->value();*/
   double maxSteps = ui->defaultSteps->value();
   double epsilon = ui->defaultEpsilon->value();
 

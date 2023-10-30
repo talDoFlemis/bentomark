@@ -13,7 +13,7 @@ class SharedMethodPageWidget : public QWidget
     Q_OBJECT
 
 public:
-    explicit SharedMethodPageWidget(std::string title, QWidget *parent = nullptr);
+    explicit SharedMethodPageWidget(std::string title, QWidget *parent = nullptr, std::string description ="");
     virtual std::vector<ModelResult*> getResults(double a, double epsilon, double initialGuess, int maxSteps) = 0;
     ~SharedMethodPageWidget();
 
