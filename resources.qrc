@@ -1,5 +1,20 @@
 <RCC>
     <qresource prefix="/fonts">
         <file>assets/fonts/Amazdoomright-o1B0.ttf</file>
+        <file>imagens/ALAN.png</file>
+        <file>imagens/enzo_1.png</file>
+        <file>imagens/juia_1 (1).png</file>
+        <file>imagens/marcelinhopfvrfunciona_1.png</file>
+    </qresource>
+    <qresource prefix="/imgs">
+        <file>imagens/saido.webp</file>
+        <file>imagens/ALAN.png</file>
+        <file>imagens/enzo_1.png</file>
+        <file>imagens/juia_1 (1).png</file>
+        <file>imagens/marcelinhopfvrfunciona_1.png</file>
+        <file>imagens/saido_1.png</file>
+        <file>imagens/will.png</file>
+        <file>imagens/diego4.png</file>
+        <file>imagens/lucas4.png</file>
     </qresource>
 </RCC>
